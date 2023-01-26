@@ -36,7 +36,7 @@ with open(r"C:\Users\Dell\Desktop\Coding\linalg.txt","r") as file:
             matrix.append(record)
         else:
             break
-rowC = rows      #keeping a copy of initial rows since we are removing it nowk
+rowC = rows      #keeping a copy of initial rows since we are removing it now
 
 #removing lines of format 0 0 0 0 etc. with no non zero values
 i = 0
@@ -94,15 +94,34 @@ def subtract(a,b):
         matrix[b][_] = matrix[b][_] - matrix[a][_]
 
 
+
+        
+
 #echelon form
-for i in range(rows):
+i = 0
+while i < rows:
     pivots = piv()
-    for t in range(i+1,rows):
+    t = i+1
+    while t < rows:
         pivots = piv()
         if pivots[i] == pivots[t]:
             makeone()
             gol(3)
             subtract(i,t)
+            #removing lines of format 0 0 0 0 etc. with no non zero values
+            q = 0
+            while q < rows:
+                flag = 1
+                for w in range(columns):
+                    if matrix[q][w] != 0:
+                        flag = 0
+                        break
+                if flag == 1:
+                    matrix.remove(matrix[q])
+                    rows -= 1
+                q += 1
+        t += 1
+    i += 1
 
 #sorting the matrix again in case something got messed up
 done = []
@@ -171,6 +190,28 @@ for i in range(columns):
 for i in range(a):
     matrix = matrix + [b]
     
+
+
+#sorting the matrix (partial echelon form)
+done = []
+i = 0
+j = 0
+while j < columns:
+    limit = 0
+    while i < rows:
+        if limit == rows:
+            break
+        elif matrix[i][j] == 0:
+            removeit = matrix.pop(i)
+            matrix.append(removeit)
+        else:
+            i += 1
+        limit += 1
+    for k in range(i,rows):
+        if [matrix[x][j] for x in range(rows)][k] == 0:
+            i = k
+            break
+    j += 1
 
 print("Row Reduced Echelon Form of given matrix")
 for i in matrix:
