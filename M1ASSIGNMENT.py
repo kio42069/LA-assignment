@@ -174,7 +174,6 @@ for i in range(1,rows):
             matrix[i-q][j] = matrix[i-q][j]-newRow[j]
 gol(3)
 
-temp = matrix.copy()
 #adding the 0 0 0 0 etc. rows wih no non zero elements back to the matrix
 if sorted(pivots) != pivots:
     new = []
@@ -213,46 +212,15 @@ while j < columns:
             break
     j += 1
 
-print("Row Reduced Echelon Form of given matrix")
-for i in matrix:
-    print(i)
 
-#Paramentric form
-matrix = temp.copy()
+#converting all -0.0's to 0.0's
+#matrix = temp.copy()
 for i in range(len(matrix)):
     for j in range(len(matrix[0])):
         if str(matrix[i][j]) == '-0.0':
             matrix[i][j] = 0.0
 
-print()
-#taking transpose of the RREF matrix
-transpose = []
-for j in range(columns):
-    newRow = [matrix[i][j] for i in range(rows)]
-    transpose.append(newRow)
-for i in transpose:
+print("Row Reduced Echelon Form of given matrix")
+for i in matrix:
     print(i)
-    
-if rows > columns :
-    print("No solution for the given matrix")
-else:
-    if rows != columns:
-        if sorted(pivots) != pivots:
-            new = []
-            for i in range(len(pivots)):
-                new = new + [[]]
-            for i in range(len(pivots)):
-                new[pivots.index(min(pivots))] = matrix[i]
-            matrix = new
-        a = columns-rows
-        b = []
-        for i in range(columns):
-            b = b + [0.0]
-        for i in range(a):
-            matrix = matrix + [b]
-            
-            
-print()
-print()
-for i in range(len(matrix)):
-    print(matrix[i])
+
