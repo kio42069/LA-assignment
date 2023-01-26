@@ -224,3 +224,44 @@ print("Row Reduced Echelon Form of given matrix")
 for i in matrix:
     print(i)
 
+#Parametric Form of the equation
+pivots = piv()
+if pivots[-1] == len(matrix[0])-1:
+    print("No solution for the given matrix")
+else:
+    def print_parametric_form(matrix):
+        # Number of variables
+        n = len(matrix[0]) - 1
+        # Number of equations
+        m = len(matrix)
+        
+        # List to store the variables
+        variables = ["x" + str(i+1) for i in range(n)]
+        
+        # Iterate through the rows of the matrix
+        for i in range(m):
+            # Iterate through the columns of the matrix
+            for j in range(n+1):
+                if matrix[i][j] != 0:
+                    if j == n:
+                        # Print the constant term on the right hand side
+                        print(str(matrix[i][j]) + " = 0")
+                    elif matrix[i][j] == 1:
+                        # Print the variable without a coefficient
+                        print(variables[j], end="")
+                    else:
+                        # Print the variable with its coefficient
+                        print(str(matrix[i][j]) + variables[j], end="")
+                    break
+                    
+            for j in range(n+1):
+                if matrix[i][j] != 0 and j != n:
+                    if matrix[i][j] == 1:
+                        print(" + ", end="")
+                    else:
+                        print(" + " + str(matrix[i][j]) + variables[j], end="")
+                elif matrix[i][j] != 0 and j == n:
+                    print(" = ", end="")
+                    print(str(matrix[i][j]), end="")
+            print("")
+    print_parametric_form(matrix=matrix)
