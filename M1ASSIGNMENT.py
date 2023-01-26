@@ -203,7 +203,7 @@ else:
             for i in range(len(pivots)):
                 new[pivots.index(min(pivots))] = matrix[i]
             matrix = new
-        a = rowC-rows
+        a = columns-rows
         b = []
         for i in range(columns):
             b = b + [0.0]
@@ -211,6 +211,7 @@ else:
             matrix = matrix + [b]
             
             
-print();print()
+print()
+print()
 for i in range(len(matrix)):
     print(matrix[i])
