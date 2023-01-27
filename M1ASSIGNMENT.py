@@ -49,7 +49,8 @@ while i < rows:
     if flag == 1:
         matrix.remove(matrix[i])
         rows -= 1
-    i += 1
+    else:
+        i += 1
         
 
 
