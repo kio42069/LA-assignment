@@ -257,4 +257,7 @@ for i in free_variables:
 
 for i in range(len(final)-1):
     print(final[i],end = "+")
-print(final[-1]) if len(final) != 0 else print("No solutions")
+if len(final) != 0:
+    print(final[-1])
+else:
+    print([0]*columns)
