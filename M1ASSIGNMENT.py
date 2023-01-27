@@ -1,6 +1,6 @@
 #Row Reduction Algorithm
 
-
+print()
 matrix = []
 #returns pivot positions
 def piv():
@@ -225,7 +225,7 @@ for i in matrix:
     print(i)
 
 #Parametric Form of the equation
-pivots = piv()
+"""pivots = piv()
 if pivots[-1] == len(matrix[0])-1:
     print("No solution for the given matrix")
 else:
@@ -264,4 +264,23 @@ else:
                     print(" = ", end="")
                     print(str(matrix[i][j]), end="")
             print("")
-    print_parametric_form(matrix=matrix)
+    print_parametric_form(matrix=matrix)"""
+    
+
+rows = rowC
+print()
+print("Parametric form")
+pivots = piv()
+free_variables = []
+for i in range(columns):
+    if i not in pivots:
+        free_variables.append(i)
+final = []
+for i in free_variables:
+    a = []
+    for j in range(rows):
+        a.append(matrix[j][i])
+    final += [str(a)+"x"+str(i+1)]
+for i in range(len(final)-1):
+    print(final[i],end = "+")
+print(final[-1])
