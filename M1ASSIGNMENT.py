@@ -214,7 +214,6 @@ while j < columns:
 
 
 #converting all -0.0's to 0.0's
-#matrix = temp.copy()
 for i in range(len(matrix)):
     for j in range(len(matrix[0])):
         if str(matrix[i][j]) == '-0.0':
@@ -225,48 +224,6 @@ for i in matrix:
     print(i)
 
 #Parametric Form of the equation
-"""pivots = piv()
-if pivots[-1] == len(matrix[0])-1:
-    print("No solution for the given matrix")
-else:
-    def print_parametric_form(matrix):
-        # Number of variables
-        n = len(matrix[0]) - 1
-        # Number of equations
-        m = len(matrix)
-        
-        # List to store the variables
-        variables = ["x" + str(i+1) for i in range(n)]
-        
-        # Iterate through the rows of the matrix
-        for i in range(m):
-            # Iterate through the columns of the matrix
-            for j in range(n+1):
-                if matrix[i][j] != 0:
-                    if j == n:
-                        # Print the constant term on the right hand side
-                        print(str(matrix[i][j]) + " = 0")
-                    elif matrix[i][j] == 1:
-                        # Print the variable without a coefficient
-                        print(variables[j], end="")
-                    else:
-                        # Print the variable with its coefficient
-                        print(str(matrix[i][j]) + variables[j], end="")
-                    break
-                    
-            for j in range(n+1):
-                if matrix[i][j] != 0 and j != n:
-                    if matrix[i][j] == 1:
-                        print(" + ", end="")
-                    else:
-                        print(" + " + str(matrix[i][j]) + variables[j], end="")
-                elif matrix[i][j] != 0 and j == n:
-                    print(" = ", end="")
-                    print(str(matrix[i][j]), end="")
-            print("")
-    print_parametric_form(matrix=matrix)"""
-    
-
 rows = rowC
 print()
 print("Parametric form")
@@ -276,11 +233,28 @@ for i in range(columns):
     if i not in pivots:
         free_variables.append(i)
 final = []
+if columns > rows:
+    a = columns-rows
+    b = []
+    for i in range(columns):
+        b.append(0.0)
+    for i in range(a):
+        matrix.append(b)
+rows = len(matrix)
+for i in range(len(matrix[0])):
+    matrix[i][i] = 1.0
 for i in free_variables:
     a = []
     for j in range(rows):
-        a.append(matrix[j][i])
+        if i == j:
+            a.append(1.0)
+        elif matrix[j][i] != 0.0:
+            a.append(-matrix[j][i])
+        else:
+            a.append(0.0)
     final += [str(a)+"x"+str(i+1)]
+
+
 for i in range(len(final)-1):
     print(final[i],end = "+")
-print(final[-1])
+print(final[-1]) if len(final) != 0 else print("No solutions")
