@@ -51,7 +51,7 @@ while i < rows:
         rows -= 1
     else:
         i += 1
-        
+
 
 
 #sorting the matrix (partial echelon form)
@@ -96,7 +96,7 @@ def subtract(a,b):
 
 
 
-        
+
 
 #echelon form
 i = 0
@@ -107,8 +107,9 @@ while i < rows:
         pivots = piv()
         if pivots[i] == pivots[t]:
             makeone()
-            gol(3)
             subtract(i,t)
+            makeone()
+            gol(3)
             #removing lines of format 0 0 0 0 etc. with no non zero values
             q = 0
             while q < rows:
@@ -143,7 +144,7 @@ while j < columns:
         if [matrix[x][j] for x in range(rows)][k] == 0:
             i = k
             break
-    j += 1            
+    j += 1
 gol(5)
 makeone()
 gol(5)
@@ -162,7 +163,7 @@ while i < rows:
         matrix.remove(matrix[i])
         rows -= 1
     i += 1
-    
+
 
 #row reduction
 pivots = piv()
@@ -189,7 +190,7 @@ for i in range(columns):
     b = b + [0.0]
 for i in range(a):
     matrix = matrix + [b]
-    
+
 
 
 #sorting the matrix (partial echelon form)
