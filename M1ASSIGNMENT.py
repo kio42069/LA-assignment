@@ -96,8 +96,6 @@ def subtract(a,b):
 
 
 
-
-
 #echelon form
 i = 0
 while i < rows:
@@ -165,6 +163,7 @@ while i < rows:
     i += 1
 
 
+
 #row reduction
 pivots = piv()
 for i in range(1,rows):
@@ -215,11 +214,14 @@ while j < columns:
     j += 1
 
 
+
 #converting all -0.0's to 0.0's
 for i in range(len(matrix)):
     for j in range(len(matrix[0])):
         if str(matrix[i][j]) == '-0.0':
             matrix[i][j] = 0.0
+
+
 
 print("Row Reduced Echelon Form of given matrix")
 for i in matrix:
@@ -245,6 +247,12 @@ if columns > rows:
 rows = len(matrix)
 for i in range(len(matrix[0])):
     matrix[i][i] = 1.0
+
+for i in free_variables:
+    for j in free_variables:
+        if j != i:
+            matrix[j][i] = 0.0
+
 for i in free_variables:
     a = []
     for j in range(rows):
